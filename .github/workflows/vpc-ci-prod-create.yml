@@ -67,6 +67,9 @@ jobs:
         continue-on-error: true
 
       - name: Terraform Plan Status
+        env:
+          TF_LOG: INFO
+          TF_INPUT: false
         if: steps.plan.outcome == 'failure'
         run: exit 1
 
