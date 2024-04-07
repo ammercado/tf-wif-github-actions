@@ -10,8 +10,20 @@ jobs:
     defaults:
       run:
         working-directory: ./terraform
+
     steps:
-    - uses: actions/checkout@v2
+    - name: "Checkout"
+      uses: actions/checkout@v3
+    - name: Configure GCP credentials
+      id: auth
+      uses: google-github-actions/auth@v2
+      with:
+        workload_identity_provider: 'projects/${{secrets.PROJECT_NO}}/locations/global/workloadIdentityPools/${{secrets.POOL_NAME}}/providers/${{secrets.PROVIDERS_NAME}}'
+        service_account: ${{secrets.SERVICE_ACCOUNT}}
+        token_format: "access_token"
+        create_credentials_file: true
+        activate_credentials_file: true
+
     - name: Install Terraform
       id: install-terraform
       run: wget -O terraform.zip https://releases.hashicorp.com/terraform/0.15.3/terraform_0.15.3_linux_amd64.zip && unzip terraform.zip && chmod +x terraform && sudo mv terraform /usr/local/bin

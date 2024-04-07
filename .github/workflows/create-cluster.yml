@@ -10,7 +10,18 @@ jobs:
       run:
         working-directory: ./terraform
     steps:
-    - uses: actions/checkout@v2
+    - name: "Checkout"
+      uses: actions/checkout@v3
+    - name: Configure GCP credentials
+      id: auth
+      uses: google-github-actions/auth@v2
+      with:
+        workload_identity_provider: 'projects/${{secrets.PROJECT_NO}}/locations/global/workloadIdentityPools/${{secrets.POOL_NAME}}/providers/${{secrets.PROVIDERS_NAME}}'
+        service_account: ${{secrets.SERVICE_ACCOUNT}}
+        token_format: "access_token"
+        create_credentials_file: true
+        activate_credentials_file: true
+
     - name: Reformat argocd applicationset config
       id: reformat-argocd-applicationset
       run: sed -i "s/HEAD/${GITHUB_REF##*/}/g" ../manifests/argocd/apps.yaml
@@ -20,4 +31,7 @@ jobs:
     - name: Apply Terraform
       id: apply-terraform
       run: terraform init -backend-config="bucket=tf-state-mdo-terraform-${{ secrets.PROJECT_ID }}" && terraform workspace select ${GITHUB_REF##*/} ||  terraform workspace new ${GITHUB_REF##*/} && terraform apply -auto-approve -var="project_id=${{ secrets.PROJECT_ID  }}" -var="branch=${GITHUB_REF##*/}"
+      
+
+
       
