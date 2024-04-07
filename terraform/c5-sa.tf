@@ -4,7 +4,7 @@ module "service_accounts" {
 
   project_id    = var.project_id
   prefix        = var.prefix
-  names         = ["sa-gke"]
+  names         = ["github-action"]
   generate_keys = false
   display_name  = "Service Account GKE"
   description   = "Using This SA for GKE"

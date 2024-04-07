@@ -24,7 +24,7 @@ resource "google_compute_instance" "first-vm" {
 
   service_account {
     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
-    email  = "sa-gke@${var.project_id}.iam.gserviceaccount.com"
+    email  = "github-action@${var.project_id}.iam.gserviceaccount.com"
     scopes = ["cloud-platform"]
   }
 
