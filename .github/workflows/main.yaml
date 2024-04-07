@@ -1,0 +1,33 @@
+name: github-action-pipeline
+
+on: 
+  push:
+      branches:
+       - main
+
+jobs:
+ run_template:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
+    steps:
+      - name: 'pulling the code'
+        uses: 'actions/checkout@v3'
+
+      - id: 'auth'
+        name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v1'
+        with:
+          workload_identity_provider: 'projects/${{secrets.PROJECT_NO}}/locations/global/workloadIdentityPools/${{secrets.POOL_NAME}}/providers/${{secrets.PROVIDERS_NAME}}'
+          service_account: ${{secrets.SERVICE_ACCOUNT}}
+          token_format: "access_token"
+          create_credentials_file: true
+          activate_credentials_file: true
+
+      - name: 'run the script file'
+        run: |- 
+          chmod +x script.sh
+          ./script.sh  
