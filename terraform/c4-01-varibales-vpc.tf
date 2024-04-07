@@ -42,7 +42,7 @@ variable "prefix" {
 variable "compute_engine_service_account" {
   description = "Service account to associate to the nodes in the cluster"
   type        = string
-  default     = "github-action@template-project-419601.iam.gserviceaccount.com "
+  default     = "github-action@template-project-419601.iam.gserviceaccount.com"
 
 }
 
