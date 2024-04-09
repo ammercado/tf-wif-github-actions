@@ -76,7 +76,7 @@ spec:
     spec:
       containers:
         - name: posts
-          image: bharamicrosystems/blog-posts:cf19661
+          image: mauikem/blog-posts:88e9889
           imagePullPolicy: Always
           ports:
             - containerPort: 5000
@@ -122,7 +122,7 @@ spec:
     spec:
       containers:
         - name: reviews
-          image: bharamicrosystems/blog-reviews:b67b213
+          image: mauikem/blog-reviews:07e0f43
           imagePullPolicy: Always
           ports:
             - containerPort: 5000
@@ -168,7 +168,7 @@ spec:
     spec:
       containers:
         - name: ratings
-          image: bharamicrosystems/blog-ratings:b77bb91
+          image: mauikem/blog-ratings:3b794b1
           imagePullPolicy: Always
           ports:
             - containerPort: 5000
@@ -214,7 +214,7 @@ spec:
     spec:
       containers:
         - name: users
-          image: bharamicrosystems/blog-users:baaed8f
+          image: mauikem/blog-users:ab1d49a
           imagePullPolicy: Always
           ports:
             - containerPort: 5000
@@ -260,7 +260,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: bharamicrosystems/blog-frontend:59b77fb
+          image: mauikem/blog-frontend:6f97a55
           imagePullPolicy: Always
           ports:
             - containerPort: 5000
