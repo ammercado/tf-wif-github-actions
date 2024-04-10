@@ -34,3 +34,5 @@ resource "kubectl_manifest" "argocd" {
   yaml_body = each.value
   override_namespace = "argocd"
 }
+
+
