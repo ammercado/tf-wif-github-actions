@@ -20,6 +20,6 @@ variable "location" {
 
 variable "machine_type" {
   type        = string
-  default     = "e2-medium"
+  default     = "n2-standard-2"
   description = "The name of the machine type to use for the cluster nodes"
 }
